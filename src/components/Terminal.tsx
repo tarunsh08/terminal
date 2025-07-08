@@ -1,0 +1,253 @@
+
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, Minimize2, Maximize2, X } from 'lucide-react';
+
+interface TerminalLine {
+  id: string;
+  type: 'command' | 'output' | 'error';
+  content: string;
+  timestamp?: Date;
+}
+
+const commands = {
+  help: {
+    description: 'Show available commands',
+    output: [
+      'Available commands:',
+      '  about     - Show information about me',
+      '  skills    - List my technical skills',
+      '  projects  - Display my projects',
+      '  contact   - Get my contact information',
+      '  clear     - Clear the terminal',
+      '  whoami    - Display current user info',
+      '  ls        - List available sections',
+      '  cat       - Read file contents (e.g., cat resume.txt)',
+    ]
+  },
+  about: {
+    description: 'Show about information',
+    output: [
+      'Full Stack Developer | 5+ Years Experience',
+      '----------------------------------------',
+      'Passionate about creating scalable web applications',
+      'and turning complex problems into elegant solutions.',
+      '',
+      'I specialize in modern JavaScript frameworks,',
+      'backend systems, and cloud architecture.',
+    ]
+  },
+  skills: {
+    description: 'List technical skills',
+    output: [
+      'Technical Skills:',
+      '================',
+      'Frontend: React, TypeScript, Next.js, Vue.js',
+      'Backend:  Node.js, Python, PostgreSQL, MongoDB',
+      'Tools:    Docker, AWS, Git, Linux',
+      'Design:   Figma, Tailwind CSS, Responsive Design',
+    ]
+  },
+  projects: {
+    description: 'Show projects',
+    output: [
+      'Recent Projects:',
+      '===============',
+      '1. E-commerce Platform - React, Node.js, MongoDB',
+      '2. Task Management App - Vue.js, Express, PostgreSQL',
+      '3. Real-time Chat App - Socket.io, React, Redis',
+      '4. Weather Dashboard - Next.js, TypeScript, API Integration',
+    ]
+  },
+  contact: {
+    description: 'Get contact information',
+    output: [
+      'Contact Information:',
+      '==================',
+      'Email: developer@example.com',
+      'GitHub: github.com/developer',
+      'LinkedIn: linkedin.com/in/developer',
+      'Portfolio: portfolio.dev',
+    ]
+  },
+  whoami: {
+    description: 'Current user info',
+    output: ['visitor@portfolio:~$ Full Stack Developer']
+  },
+  ls: {
+    description: 'List sections',
+    output: ['about.txt', 'skills.json', 'projects/', 'contact.md', 'resume.pdf']
+  },
+  clear: {
+    description: 'Clear terminal',
+    output: []
+  }
+};
+
+export const Terminal = () => {
+  const [lines, setLines] = useState<TerminalLine[]>([
+    {
+      id: '1',
+      type: 'output',
+      content: 'Welcome to Developer Portfolio Terminal v1.0.0',
+    },
+    {
+      id: '2',
+      type: 'output',
+      content: 'Type "help" to see available commands.',
+    }
+  ]);
+  const [currentInput, setCurrentInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [lines]);
+
+  const handleCommand = async (command: string) => {
+    const trimmedCommand = command.trim().toLowerCase();
+    const newLine: TerminalLine = {
+      id: Date.now().toString(),
+      type: 'command',
+      content: `visitor@portfolio:~$ ${command}`,
+      timestamp: new Date()
+    };
+
+    setLines(prev => [...prev, newLine]);
+    setCurrentInput('');
+    setIsTyping(true);
+
+    // Simulate typing delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    if (trimmedCommand === 'clear') {
+      setLines([]);
+      setIsTyping(false);
+      return;
+    }
+
+    const cmd = commands[trimmedCommand as keyof typeof commands];
+    if (cmd) {
+      const outputLines = cmd.output.map((line, index) => ({
+        id: `${Date.now()}-${index}`,
+        type: 'output' as const,
+        content: line
+      }));
+      setLines(prev => [...prev, ...outputLines]);
+    } else {
+      setLines(prev => [...prev, {
+        id: Date.now().toString(),
+        type: 'error',
+        content: `Command not found: ${trimmedCommand}. Type "help" for available commands.`
+      }]);
+    }
+    setIsTyping(false);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && currentInput.trim()) {
+      handleCommand(currentInput);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className={`bg-slate-900 border border-slate-700 rounded-lg shadow-2xl font-mono text-sm ${
+        isMinimized ? 'h-12' : 'h-[calc(100vh-100px)]'
+      } transition-all duration-300`}
+      style={{
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
+      {/* Terminal Header */}
+      <div className="flex items-center justify-between bg-slate-800 px-4 py-2 rounded-t-lg border-b border-slate-700">
+        <div className="flex items-center space-x-2">
+          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+        </div>
+        <span className="text-slate-300 text-xs">visitor@portfolio:~</span>
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={() => setIsMinimized(!isMinimized)}
+            className="text-slate-400 hover:text-white transition-colors"
+          >
+            {isMinimized ? <Maximize2 size={14} /> : <Minimize2 size={14} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Terminal Content */}
+      <AnimatePresence>
+        {!isMinimized && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="flex flex-col flex-grow"
+            style={{
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <div
+              ref={terminalRef}
+              className="flex-1 p-4 space-y-1 text-green-400 overflow-y-auto custom-scrollbar"
+            >
+              {lines.map((line) => (
+                <motion.div
+                  key={line.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className={`${
+                    line.type === 'command'
+                      ? 'text-cyan-400'
+                      : line.type === 'error'
+                      ? 'text-red-400'
+                      : 'text-green-400'
+                  }`}
+                >
+                  {line.content}
+                </motion.div>
+              ))}
+              {isTyping && (
+                <motion.div
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="text-green-400"
+                >
+                  _
+                </motion.div>
+              )}
+            </div>
+
+            {/* Input Line */}
+            <div className="flex items-center px-4 py-2 border-t border-slate-700">
+              <span className="text-cyan-400 mr-2">visitor@portfolio:~$</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={currentInput}
+                onChange={(e) => setCurrentInput(e.target.value)}
+                onKeyPress={handleKeyPress}
+                className="flex-1 bg-transparent text-green-400 outline-none caret-green-400"
+                placeholder="Type a command..."
+                autoFocus
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
