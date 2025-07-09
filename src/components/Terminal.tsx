@@ -42,10 +42,10 @@ const commands = {
     output: [
       'Technical Skills:',
       '================',
-      'Frontend: React, TypeScript, Next.js, Vue.js',
-      'Backend:  Node.js, Python, PostgreSQL, MongoDB',
-      'Tools:    Docker, AWS, Git, Linux',
-      'Design:   Figma, Tailwind CSS, Responsive Design',
+      'Frontend: React, TypeScript, Next.js',
+      'Backend:  Node.js, Express.js,Firebase,Supabase,Redis, MongoDB',
+      'Tools:    Docker, Git, Linux, Socket.io, WebContainer',
+      'Design:   Tailwind CSS, Bootstrap, Responsive Design,GSAP, Framer Motion',
     ]
   },
   projects: {
@@ -53,10 +53,10 @@ const commands = {
     output: [
       'Recent Projects:',
       '===============',
-      '1. E-commerce Platform - React, Node.js, MongoDB',
-      '2. Task Management App - Vue.js, Express, PostgreSQL',
-      '3. Real-time Chat App - Socket.io, React, Redis',
-      '4. Weather Dashboard - Next.js, TypeScript, API Integration',
+      '1. RoboDev IDE+Chat - React, Node.js,Express.js,Redis,Langchain, MongoDB, Socket.io,WebContainer, GSAP, Tailwind CSS',
+      '2. UI Component Library - Next.js, TypeScript,MDX,Botpress,Fumadocs,Shadcn, Tailwind CSS',
+      '3. Fitness Platform - Next.js, TypeScript,MongoDB,Supabase,Razorpay, Tailwind CSS',
+      '4. Remix Gallery - Next.js, TypeScript, Replicate, Tailwind CSS',
     ]
   },
   contact: {
@@ -64,10 +64,9 @@ const commands = {
     output: [
       'Contact Information:',
       '==================',
-      'Email: developer@example.com',
-      'GitHub: github.com/developer',
-      'LinkedIn: linkedin.com/in/developer',
-      'Portfolio: portfolio.dev',
+      'Email: tarunsharma08.com@gmail.com',
+      'GitHub: github.com/tarunsh08',
+      'LinkedIn: https://www.linkedin.com/in/tarun-sharma-a0a5552b4',
     ]
   },
   whoami: {
@@ -89,7 +88,7 @@ export const Terminal = () => {
     {
       id: '1',
       type: 'output',
-      content: 'Welcome to Developer Portfolio Terminal v1.0.0',
+      content: 'Welcome to Tarun&apos;s Portfolio Terminal v1.0.0',
     },
     {
       id: '2',
