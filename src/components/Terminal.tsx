@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, Minimize2, Maximize2, X } from 'lucide-react';
+import { Minimize2, Maximize2 } from 'lucide-react';
 
 interface TerminalLine {
   id: string;
@@ -28,7 +28,7 @@ const commands = {
   about: {
     description: 'Show about information',
     output: [
-      'Full Stack Developer | 5+ Years Experience',
+      'Full Stack Developer',
       '----------------------------------------',
       'Passionate about creating scalable web applications',
       'and turning complex problems into elegant solutions.',
@@ -44,8 +44,8 @@ const commands = {
       '================',
       'Frontend: React, TypeScript, Next.js',
       'Backend:  Node.js, Express.js,Firebase,Supabase,Redis, MongoDB',
-      'Tools:    Docker, Git, Linux, Socket.io, WebContainer',
-      'Design:   Tailwind CSS, Bootstrap, Responsive Design,GSAP, Framer Motion',
+      'Tools:    Docker, Git,Github, Socket.io, WebContainer',
+      'Design:   Tailwind CSS, Bootstrap,GSAP, Framer Motion',
     ]
   },
   projects: {
@@ -71,11 +71,28 @@ const commands = {
   },
   whoami: {
     description: 'Current user info',
-    output: ['visitor@portfolio:~$ Full Stack Developer']
+    output: ['tarun@portfolio:~$ Full Stack Developer']
   },
   ls: {
     description: 'List sections',
     output: ['about.txt', 'skills.json', 'projects/', 'contact.md', 'resume.pdf']
+  },
+  resume: {
+    description: 'Provide Resume',
+    output: [
+      <object
+        key="resume"
+        data="/TarunFullStack%20(1).pdf"
+        type="application/pdf"
+        width="100%"
+        height="600px"
+      >
+        <p>
+          Your web browser doesn't have a PDF plugin. Instead you can{' '}
+          <a href="/TarunFullStack%20(1).pdf">download the PDF</a>.
+        </p>
+      </object>
+    ]
   },
   clear: {
     description: 'Clear terminal',
@@ -113,7 +130,7 @@ export const Terminal = () => {
     const newLine: TerminalLine = {
       id: Date.now().toString(),
       type: 'command',
-      content: `visitor@portfolio:~$ ${command}`,
+      content: `tarun@portfolio:~$ ${command}`,
       timestamp: new Date()
     };
 
@@ -159,7 +176,7 @@ export const Terminal = () => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       className={`bg-slate-900 border border-slate-700 rounded-lg shadow-2xl font-mono text-sm ${
-        isMinimized ? 'h-12' : 'h-[calc(100vh-100px)]'
+        isMinimized ? 'h-12' : 'h-[calc(100vh-200px)]'
       } transition-all duration-300`}
       style={{
         overflow: 'hidden',
@@ -174,7 +191,7 @@ export const Terminal = () => {
           <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
         </div>
-        <span className="text-slate-300 text-xs">visitor@portfolio:~</span>
+        <span className="text-slate-300 text-xs">tarun@portfolio:~</span>
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setIsMinimized(!isMinimized)}
@@ -232,7 +249,7 @@ export const Terminal = () => {
 
             {/* Input Line */}
             <div className="flex items-center px-4 py-2 border-t border-slate-700">
-              <span className="text-cyan-400 mr-2">visitor@portfolio:~$</span>
+              <span className="text-cyan-400 mr-2">tarun@portfolio:~$</span>
               <input
                 ref={inputRef}
                 type="text"
