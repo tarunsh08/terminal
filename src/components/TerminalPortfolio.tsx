@@ -244,7 +244,7 @@ export const TerminalPortfolio = () => {
                     <p className="text-slate-400 mb-2">
                       A project management platform with integrated AI coding assistant. Users can collaborate in real-time, tag AI to generate code snippets, and debug in a Node.js environment using WebContainers. Features include live chat, built-in IDE, and terminal access.
                     </p>
-                    <div className="flex space-x-2 mb-3">
+                    <div className="flex flex-wrap gap-2 mb-3 sm:gap-x-3 md:gap-x-4">
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">React</span>
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">Node.js</span>
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">Socket.io</span>
@@ -277,7 +277,7 @@ export const TerminalPortfolio = () => {
                     <p className="text-slate-400 mb-2">
                     Engineered Eatech with 50+ reusable modern UI components. Enabled easy integration by allowing users to install components via CLI. Integrated a Next.js documentation bot to assist users with technical queries. Created clear, beginner-friendly documentation to support adoption.
                     </p>
-                    <div className="flex space-x-2 mb-3">
+                    <div className="flex flex-wrap gap-2 mb-3 sm:gap-x-3 md:gap-x-4">
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">Next.js</span>
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">Tailwind CSS</span>
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">Shadcn</span>
@@ -307,7 +307,7 @@ export const TerminalPortfolio = () => {
                     <p className="text-slate-400 mb-2">
                     Built a fitness platform to support users in their fitness journey. Enabled users to purchase customized plans or access beginner-friendly content for free. Provided personalized diet and workout plans based on selected goals. Built a social dashboard where users post updates, fostering motivation and discipline.
                     </p>
-                    <div className="flex space-x-2 mb-3">
+                    <div className="flex flex-wrap gap-2 mb-3 sm:gap-x-3 md:gap-x-4">
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">Next.js</span>
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">Supabase</span>
                       <span className="text-xs bg-slate-800 px-2 py-1 rounded">Razorpay</span>
@@ -330,7 +330,7 @@ export const TerminalPortfolio = () => {
                     </div>
                   </div>
 
-                  <a href="https://github.com/tarunsh08" target="_blank" rel="noopener noreferrer" className="mx-auto text-sm bg-slate-800 hover:bg-slate-700 px-3 py-1 rounded-md flex items-center transition-colors items-center w-20">
+                  <a href="https://github.com/tarunsh08" target="_blank" rel="noopener noreferrer" className="mx-auto text-sm bg-slate-800 hover:bg-slate-700 px-3 py-1 rounded-md flex items-center transition-colors w-20">
                     See more on GitHub
                   </a>
                 </div>

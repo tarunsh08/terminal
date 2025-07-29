@@ -75,7 +75,7 @@ const commands = {
   },
   ls: {
     description: 'List sections',
-    output: ['about.txt', 'skills.json', 'projects/', 'contact.md', 'resume.pdf']
+    output: ['about', 'skills', 'projects', 'contact', 'resume']
   },
   resume: {
     description: 'Provide Resume',
@@ -105,7 +105,7 @@ export const Terminal = () => {
     {
       id: '1',
       type: 'output',
-      content: 'Welcome to Tarun&apos;s Portfolio Terminal v1.0.0',
+      content: "Welcome to Tarun's Portfolio Terminal v1.0.0",
     },
     {
       id: '2',
