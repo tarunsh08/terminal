@@ -82,14 +82,14 @@ const commands = {
     output: [
       <object
         key="resume"
-        data="/TarunFullStack%20(1).pdf"
+        data="/TarunFullStackRes.pdf"
         type="application/pdf"
         width="100%"
         height="600px"
       >
         <p>
           Your web browser doesn't have a PDF plugin. Instead you can{' '}
-          <a href="/TarunFullStack%20(1).pdf">download the PDF</a>.
+          <a href="/TarunFullStackRes.pdf">download the PDF</a>.
         </p>
       </object>
     ]
