@@ -22,7 +22,6 @@ const commands = {
       '  clear     - Clear the terminal',
       '  whoami    - Display current user info',
       '  ls        - List available sections',
-      '  cat       - Read file contents (e.g., cat resume.txt)',
     ]
   },
   about: {
@@ -55,8 +54,9 @@ const commands = {
       '===============',
       '1. RoboDev IDE+Chat - React, Node.js,Express.js,Redis,Langchain, MongoDB, Socket.io,WebContainer, GSAP, Tailwind CSS',
       '2. UI Component Library - Next.js, TypeScript,MDX,Botpress,Fumadocs,Shadcn, Tailwind CSS',
-      '3. Fitness Platform - Next.js, TypeScript,MongoDB,Supabase,Razorpay, Tailwind CSS',
-      '4. Remix Gallery - Next.js, TypeScript, Replicate, Tailwind CSS',
+      '3. Shelter - MongoDB, Express.js, React, Redux, GoogleOAuth, Tailwind CSS',
+      '4. Fitness Platform - Next.js, TypeScript,MongoDB,Supabase,Razorpay, Tailwind CSS',
+      '5. Remix Gallery - Next.js, TypeScript, Replicate, Tailwind CSS',
     ]
   },
   contact: {
@@ -218,7 +218,7 @@ export const Terminal = () => {
           >
             <div
               ref={terminalRef}
-              className="flex-1 p-4 space-y-1 text-green-400 overflow-y-auto custom-scrollbar"
+              className="flex-1 p-4 space-y-1 text-green-400 overflow-y-auto custom-scrollbar scrollbar-hide"
             >
               {lines.map((line) => (
                 <motion.div
