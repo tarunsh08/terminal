@@ -28,7 +28,7 @@ export const ProjectsContent = () => (
       <ProjectItem
         title="Shelter: Rent or Sell Properties"
         description="A comprehensive real estate platform for renting and selling properties. Features advanced search filters, property comparisons, virtual tours, and secure payment integration. Built with modern web technologies for optimal performance and user experience."
-        technologies={["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "NextAuth", "Stripe"]}
+        technologies={["React", "Express.js", "Tailwind CSS", "MongoDB", "Redux", "GoogleOAuth", "Node.js"]}
         githubUrl="https://github.com/tarunsh08/Shelter"
         demoUrl="https://real-estate-ac5w.vercel.app"
         imageUrl="/shelter-demo.png"
